@@ -388,11 +388,34 @@ function openPayment(type) {
   const link = PAYMENT_LINKS[type];
 
   if (!link || link.includes("REPLACE_WITH")) {
-    alert("This functionality will be available in a future update.");
+    showMessage("This functionality will be available in a future update.");
     return;
   }
 
   window.open(link, "_blank", "noopener,noreferrer");
+}
+
+function showMessage(text) {
+  const msg = document.createElement("div");
+
+  msg.textContent = text;
+
+  msg.style.position = "fixed";
+  msg.style.bottom = "20px";
+  msg.style.left = "50%";
+  msg.style.transform = "translateX(-50%)";
+  msg.style.background = "#111";
+  msg.style.color = "#fff";
+  msg.style.padding = "12px 18px";
+  msg.style.borderRadius = "8px";
+  msg.style.zIndex = "9999";
+  msg.style.fontSize = "14px";
+
+  document.body.appendChild(msg);
+
+  setTimeout(() => {
+    msg.remove();
+  }, 3000);
 }
 
 function setRoute() {
